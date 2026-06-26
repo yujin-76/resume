@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOMA - Product List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        /* 헤더 영역 */
+        header {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 30px 40px;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+        }
+        .header-left .menu-btn {
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .header-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .header-center .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 2px;
+        }
+        .search-container input {
+            border: none;
+            outline: none;
+            width: 100px;
+            font-size: 14px;
+            padding-left: 5px;
+        }
+        .header-right a {
+            color: #333;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        /* 타이틀 구역 */
+        .page-title {
+            text-align: center;
+            margin: 60px 0 40px 0;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* 상품 리스트 그리드 (기본 4열 구조) */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px 20px;
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 40px;
+            margin: 0 auto 100px auto;
+            min-width: 1200px;
+        }
+        .product-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .product-image-box {
+            width: 100%;
+            height: 280px;
+            background-color: #f5f5f5;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .product-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .product-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #222;
+        }
+        .product-price {
+            font-size: 13px;
+            font-weight: 400;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+        <div class="header-center">
+            <div class="logo">
+                <a href="KOMA.html" style="color: inherit; text-decoration: none;">KOMA</a>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
+                <input type="text">
+            </div>
+            <a href="#"><i class="fa-regular fa-user"></i></a>
+            <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-title">ALL COLLECTION</div>
+
+        <div class="product-grid">
+            <div class="product-item">
+                <a href="koma_3.html">
+                    <div class="product-image-box">
+                        <img src="https://www.nutheaz.co.kr/web/product/big/202602/6c46dd220a89bf038ddfd8862b72c4cd.jpg" alt="Item 1">
+                    </div>
+                </a>
+                <div class="product-info">
+                    <span class="product-name">KOMA 시그니처 블록 링</span>
+                    <span class="product-price">90,000원</span>
+                </div>
+            </div>
+
+            <div class="product-item">
+                <div class="product-image-box"><img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=500&q=80" alt="Item 2"></div>
+                <div class="product-info"><span class="product-name">웨이브 실버 레이어 링</span><span class="product-price">142,000원</span></div>
+            </div>
+            <div class="product-item">
+                <div class="product-image-box"><img src="https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&w=500&q=80" alt="Item 3"></div>
+                <div class="product-info"><span class="product-name">클래식 오벌 골드 링</span><span class="product-price">235,000원</span></div>
+            </div>
+            <div class="product-item">
+                <div class="product-image-box"><img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80" alt="Item 4"></div>
+                <div class="product-info"><span class="product-name">미니멀 스퀘어 실버 체인</span><span class="product-price">98,000원</span></div>
+            </div>
+            <div class="product-item">
+                <div class="product-image-box"><img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=500&q=80" alt="Item 5"></div>
+                <div class="product-info"><span class="product-name">언밸런스 볼륨 와이드 링</span><span class="product-price">169,000원</span></div>
+            </div>
+            <div class="product-item">
+                <div class="product-image-box"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=500&q=80" alt="Item 6"></div>
+                <div class="product-info"><span class="product-name">다이아 크러스트 가드 링</span><span class="product-price">310,000원</span></div>
+            </div>
+            <div class="product-item">
+                <div class="product-image-box"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="Item 7"></div>
+                <div class="product-info"><span class="product-name">트위스트 실버 브레이슬릿</span><span class="product-price">125,000원</span></div>
+            </div>
+            <div class="product-item">
+                <div class="product-image-box"><img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80" alt="Item 8"></div>
+                <div class="product-info"><span class="product-name">모던 체인 드롭 이어링</span><span class="product-price">89,000원</span></div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

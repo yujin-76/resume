@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOMA 스타일 - 가입완료</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* 헤더 영역 (공통 디자인 유지) */
+        header {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 30px 40px;
+            background-color: #fff;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            z-index: 10;
+        }
+        .header-left .menu-btn {
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .header-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+        }
+        .header-center .logo-main-link {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            text-decoration: none;
+            color: #333333;
+            display: inline-block;
+            position: relative;
+            z-index: 999;
+            pointer-events: auto;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            z-index: 10;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 2px;
+        }
+        .search-container input {
+            border: none;
+            outline: none;
+            width: 100px;
+            font-size: 14px;
+            padding-left: 5px;
+        }
+        .header-right a {
+            color: #333;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        /* 가입 완료 메인 레이아웃 */
+        main {
+            width: 100%;
+            max-width: 440px;
+            margin: 0 auto;
+            padding: 100px 20px 120px 20px;
+            text-align: center;
+        }
+
+        /* 체크 아이콘 감성 포인트 */
+        .welcome-icon {
+            font-size: 40px;
+            color: #111111;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .welcome-title {
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #111111;
+            margin-bottom: 16px;
+        }
+
+        .welcome-desc {
+            font-size: 14px;
+            color: #666666;
+            line-height: 1.6;
+            letter-spacing: -0.3px;
+            margin-bottom: 50px;
+        }
+
+        /* 로그인하러 가기 버튼 */
+        .go-login-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 48px;
+            background-color: #111;
+            color: #fff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: background-color 0.2s;
+            margin-bottom: 16px;
+        }
+        .go-login-btn:hover {
+            background-color: #333;
+        }
+
+        /* 홈으로 이동 링크 */
+        .go-home-link {
+            font-size: 12px;
+            color: #888;
+            text-decoration: none;
+            display: inline-block;
+            padding: 5px;
+        }
+        .go-home-link:hover {
+            color: #111;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 공통 헤더 영역 -->
+    <header>
+        <div class="header-left">
+            <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+        <div class="header-center">
+            <a href="KOMA.html" class="logo-main-link">KOMA</a>
+        </div>
+        <div class="header-right">
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
+                <input type="text">
+            </div>
+            <a href="koma_login.html"><i class="fa-regular fa-user"></i></a>
+            <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
+        </div>
+    </header>
+
+    <!-- 가입 완료 섹션 메인 콘텐츠 -->
+    <main>
+        <!-- 정갈한 체크 아이콘 -->
+        <div class="welcome-icon">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        
+        <h2 class="welcome-title">WELCOME TO KOMA</h2>
+        <p class="welcome-desc">
+            회원가입이 성공적으로 완료되었습니다.<br>
+            KOMA의 멤버가 되신 것을 진심으로 환영합니다.
+        </p>
+
+        <!-- 로그인으로 이동 버튼 -->
+        <a href="koma_login.html" class="go-login-btn">LOG IN</a>
+        
+        <!-- 메인으로 이동 링크 -->
+        <a href="KOMA.html" class="go-home-link">메인 페이지로 이동</a>
+    </main>
+
+</body>
+</html>

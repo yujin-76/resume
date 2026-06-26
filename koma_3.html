@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOMA 스타일 - 상품 대여 상세</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 로고 링크 스타일 */
+        .header-center .logo-main-link {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            text-decoration: none;
+            color: #333333;
+            display: inline-block;
+            position: relative;
+            z-index: 999;
+            pointer-events: auto;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* 헤더 영역 */
+        header {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 30px 40px;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            z-index: 10;
+        }
+        .header-left .menu-btn {
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .header-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            z-index: 10;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 2px;
+        }
+        .search-container input {
+            border: none;
+            outline: none;
+            width: 100px;
+            font-size: 14px;
+            padding-left: 5px;
+        }
+        .header-right a {
+            color: #333;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        /* 메인 영역 */
+        main {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 40px 80px 40px;
+        }
+
+        /* 상세 페이지 메인 레이아웃 */
+        .detail-container {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+            border-bottom: 2px solid #111;
+            padding-bottom: 60px;
+            margin-top: 20px;
+        }
+
+        /* 좌측 사진 영역 */
+        .detail-image-box {
+            flex: 1.2;
+            aspect-ratio: 4 / 3;
+            background-color: #ffb3b3;
+            border: 3px solid #0080ff;
+            overflow: hidden;
+        }
+        .detail-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 우측 대여 정보 영역 */
+        .detail-info-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding-top: 10px;
+        }
+        .info-top-line {
+            width: 100%;
+            border-top: 1px solid #ccc;
+            margin-bottom: 40px;
+        }
+        .info-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+        .info-list li {
+            font-size: 16px;
+            color: #111;
+            line-height: 1.6;
+        }
+        .info-list li strong {
+            font-weight: 700;
+            display: inline-block;
+            width: 160px;
+        }
+        .info-list li span {
+            color: #555;
+        }
+
+        /* 버튼 그룹 */
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            padding-left: 40px;
+        }
+        .btn-group button {
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 20px;
+            padding: 10px 40px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 110px;
+        }
+        .btn-group button:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* 하단 가이드 섹션 */
+        .rental-guide-section {
+            margin-top: 80px;
+            width: 100%;
+            border-top: 1px solid #111;
+            padding-top: 60px;
+        }
+
+        /* 캘린더 스타일 */
+        .calendar-wrapper {
+            width: 100%;
+            border: 1px solid #111;
+            padding: 30px;
+            margin-bottom: 80px;
+            background-color: #ffffff;
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .calendar-month {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .cal-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: #555;
+        }
+        .calendar-status-legend {
+            display: flex;
+            gap: 20px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #555;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .status-dot.available { background-color: #111; }
+        .status-dot.rented { background-color: #e5e5e5; }
+        .status-dot.selected { background-color: #0080ff; }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            border-left: 1px solid #eee;
+            border-top: 1px solid #eee;
+        }
+        .day-label {
+            text-align: center;
+            padding: 12px 0;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #333;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            background-color: #fafafa;
+        }
+        .day-label.sun { color: #d9534f; }
+        .day-label.sat { color: #0275d8; }
+
+        .day-cell {
+            height: 90px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            background-color: #fff;
+        }
+        .day-cell.empty { background-color: #fdfdfd; }
+        .day-cell .num { font-size: 13px; font-weight: 500; color: #333; }
+        .day-cell .status { font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 3px; align-self: flex-end; }
+        .day-cell .status.available { color: #111; background-color: #f0f0f0; }
+
+        .day-cell.rented-day { background-color: #fafafa; }
+        .day-cell.rented-day .num { color: #ccc; text-decoration: line-through; }
+        .day-cell .status.rented { color: #aaa; background-color: #f0f0f0; font-weight: normal; }
+
+        .day-cell.selected-day { background-color: #e6f2ff; }
+        .day-cell.selected-day .num { color: #0080ff; font-weight: bold; }
+        .day-cell .status.selected { color: #fff; background-color: #0080ff; }
+
+        /* 케어 배너 */
+        .care-banner {
+            border: 1px solid #e5e5e5;
+            padding: 45px 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 90px;
+            background-color: #fafafa;
+        }
+        .care-tag { font-size: 11px; letter-spacing: 3px; color: #888; font-weight: 500; margin-bottom: 8px; }
+        .care-banner h3 { font-size: 20px; font-weight: 400; letter-spacing: 5px; color: #111; }
+        .care-line { width: 30px; height: 1px; background-color: #111; margin: 20px 0; }
+        .care-banner p { font-size: 13px; color: #555; line-height: 1.8; letter-spacing: 0.5px; }
+
+        /* 타이틀 */
+        .section-title-wrap { margin-bottom: 40px; text-align: left; }
+        .sub-title { font-size: 11px; letter-spacing: 4px; color: #888; display: block; margin-bottom: 6px; font-weight: 600; }
+        .main-title { font-size: 22px; font-weight: 600; letter-spacing: 3px; color: #111; }
+
+        /* 프로세스 그리드 */
+        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 60px; }
+        .process-step { border-top: 1px solid #111; padding-top: 25px; }
+        .step-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; }
+        .step-num { font-size: 24px; font-weight: 300; color: #111; }
+        .process-step h4 { font-size: 11px; font-weight: 600; letter-spacing: 2px; color: #111; }
+        .step-ko-title { font-size: 14px; font-weight: bold; color: #222; margin-bottom: 8px; }
+        .step-desc { font-size: 12px; color: #777; line-height: 1.6; }
+
+        /* [수정] 순수 HTML FAQ (details/summary 태그 전용 CSS) */
+        .faq-container {
+            border-top: 1px solid #111;
+            margin-bottom: 100px;
+        }
+        .faq-item {
+            border-bottom: 1px solid #e5e5e5;
+        }
+        /* 클릭하는 제목 부분 */
+        .faq-item summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: #222;
+            list-style: none; /* 기본 삼각형 아이콘 숨기기 */
+        }
+        .faq-item summary::-webkit-details-marker {
+            display: none; /* 사파리 브라우저용 삼각형 숨기기 */
+        }
+        .faq-item summary:hover {
+            background-color: #fcfcfc;
+        }
+        .arrow-icon {
+            font-size: 12px;
+            color: #888;
+            transition: transform 0.2s;
+        }
+        /* 답변 내용 부분 */
+        .faq-content {
+            background-color: #fafafa;
+            border-top: 1px solid #f0f0f0;
+        }
+        .faq-content p {
+            padding: 24px 30px;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.8;
+        }
+        /* 아코디언이 열렸을 때 화살표 돌리기 */
+        .faq-item[open] .arrow-icon {
+            transform: rotate(180deg);
+            color: #111;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+        <div class="header-center">
+            <a href="KOMA.html" class="logo-main-link">KOMA</a>
+        </div>
+        <div class="header-right">
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
+                <input type="text">
+            </div>
+            <a href="#"><i class="fa-regular fa-user"></i></a>
+            <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <div class="detail-container">
+            <div class="detail-image-box">
+                <img src="https://www.nutheaz.co.kr/web/product/big/202602/6c46dd220a89bf038ddfd8862b72c4cd.jpg" alt="Rental Jewelry">
+            </div>
+
+            <div class="detail-info-box">
+                <div class="info-top-line"></div>
+                <ul class="info-list">
+                    <li><strong>이름 :</strong> <span>KOMA 시그니처 블록 링</span></li>
+                    <li><strong>대여비 :</strong> <span>9,000원 / 3일</span></li>
+                    <li><strong>대여 가능일 수 :</strong> <span>3박 4일</span></li>
+                    <li><strong>파손 및 분실 주의사항 :</strong> <span>반납 시 스크래치 및 오염 여부를 확인하며, 심한 파손이나 분실 시 제품 소비자가의 80% 가 청구될 수 있습니다.</span></li>
+                </ul>
+
+                <div class="btn-group">
+                    <button type="button">예약</button>
+                    <button type="button">대여</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="rental-guide-section">
+            <div class="section-title-wrap">
+                <span class="sub-title">AVAILABILITY</span>
+                <h3 class="main-title">RENTAL CALENDAR</h3>
+            </div>
+
+            <div class="calendar-wrapper">
+                <div class="calendar-header">
+                    <div class="calendar-month">
+                        <button type="button" class="cal-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                        <span>2026. 07</span>
+                        <button type="button" class="cal-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar-status-legend">
+                        <span class="legend-item"><span class="status-dot available"></span>대여 가능</span>
+                        <span class="legend-item"><span class="status-dot rented"></span>대여 중</span>
+                        <span class="legend-item"><span class="status-dot selected"></span>선택 일자</span>
+                    </div>
+                </div>
+
+                <div class="calendar-grid">
+                    <div class="day-label sun">SUN</div>
+                    <div class="day-label">MON</div>
+                    <div class="day-label">TUE</div>
+                    <div class="day-label">WED</div>
+                    <div class="day-label">THU</div>
+                    <div class="day-label">FRI</div>
+                    <div class="day-label sat">SAT</div>
+
+                    <div class="day-cell empty"></div>
+                    <div class="day-cell empty"></div>
+                    <div class="day-cell empty"></div>
+                    <div class="day-cell"><span class="num">1</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">2</span><span class="status available">가능</span></div>
+                    <div class="day-cell rented-day"><span class="num">3</span><span class="status rented">대여중</span></div>
+                    <div class="day-cell rented-day"><span class="num">4</span><span class="status rented">대여중</span></div>
+
+                    <div class="day-cell rented-day"><span class="num">5</span><span class="status rented">대여중</span></div>
+                    <div class="day-cell rented-day"><span class="num">6</span><span class="status rented">대여중</span></div>
+                    <div class="day-cell"><span class="num">7</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">8</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">9</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">10</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">11</span><span class="status available">가능</span></div>
+
+                    <div class="day-cell selected-day"><span class="num">12</span><span class="status selected">시작일</span></div>
+                    <div class="day-cell selected-day"><span class="num">13</span><span class="status selected">선택됨</span></div>
+                    <div class="day-cell selected-day"><span class="num">14</span><span class="status selected">선택됨</span></div>
+                    <div class="day-cell selected-day"><span class="num">15</span><span class="status selected">반납일</span></div>
+                    <div class="day-cell"><span class="num">16</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">17</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">18</span><span class="status available">가능</span></div>
+
+                    <div class="day-cell"><span class="num">19</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">20</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">21</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">22</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">23</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">24</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">25</span><span class="status available">가능</span></div>
+
+                    <div class="day-cell"><span class="num">26</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">27</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">28</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">29</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">30</span><span class="status available">가능</span></div>
+                    <div class="day-cell"><span class="num">31</span><span class="status available">가능</span></div>
+                    <div class="day-cell empty"></div>
+                </div>
+            </div>
+            
+            <div class="care-banner">
+                <span class="care-tag">KOMA PREMIUM ANTI-BACTERIAL CARE</span>
+                <h3>SAFE HYGIENE SYSTEM</h3>
+                <div class="care-line"></div>
+                <p>KOMA의 모든 렌탈 피스는 반납 즉시 전문 초음파 세척 및 고온 멸균 소독 공정을 거칩니다.<br>신품급 상태로 완벽하게 밀봉된 패키지만이 다음 고객에게 안전하게 인도됩니다.</p>
+            </div>
+
+            <div class="section-title-wrap">
+                <span class="sub-title">GUIDE</span>
+                <h3 class="main-title">RENTAL PROCESS</h3>
+            </div>
+            
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-header"><span class="step-num">01</span><h4>SELECT & RESERVE</h4></div>
+                    <p class="step-ko-title">제품 예약 및 결제</p>
+                    <p class="step-desc">원하는 착용 날짜를 지정하고 대여 서비스를 예약합니다.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-header"><span class="step-num">02</span><h4>SECURE DELIVERY</h4></div>
+                    <p class="step-ko-title">안전 배송 수령</p>
+                    <p class="step-desc">지정한 일정 1~2일 전, 전용 패키지에 담겨 안전하게 도착합니다.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-header"><span class="step-num">03</span><h4>THE SPECIAL DAY</h4></div>
+                    <p class="step-ko-title">특별한 날 착용</p>
+                    <p class="step-desc">대여 기간 동안 KOMA 주얼리와 함께 소중한 순간을 완성해보세요.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-header"><span class="step-num">04</span><h4>EASY RETURN</h4></div>
+                    <p class="step-ko-title">간편 문 앞 반납</p>
+                    <p class="step-desc">반납일에 패키지 그대로 밀봉 후 문 앞에 두면 자동 수거됩니다.</p>
+                </div>
+            </div>
+
+            <div class="section-title-wrap" style="margin-top: 100px;">
+                <span class="sub-title">ASSISTANCE</span>
+                <h3 class="main-title">RENTAL FAQ</h3>
+            </div>
+            
+            <div class="faq-container">
+                <details class="faq-item">
+                    <summary>
+                        <span>Q. 반납일이 늦어지면 어떻게 되나요?</span>
+                        <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                    </summary>
+                    <div class="faq-content">
+                        <p>지정된 반납일보다 초과될 경우 1일당 대여비의 20%에 해당하는 연체료가 발생할 수 있으니 반납 일정을 꼭 준수해 주세요. 부득이하게 연장이 필요한 경우 반납일 24시간 전 고객센터로 먼저 문의해 주셔야 합니다.</p>
+                    </div>
+                </details>
+                
+                <details class="faq-item">
+                    <summary>
+                        <span>Q. 착용 중 미세한 생활 스크래치가 났어요.</span>
+                        <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                    </summary>
+                    <div class="faq-content">
+                        <p>일상적인 착용 중 발생하는 미세한 흠집이나 가벼운 오염은 정상 범주로 처리되므로 안심하셔도 됩니다. 다만, 형태가 심하게 변형되거나 깊은 파손, 또는 구성품을 완전히 분실한 경우에는 제품 소비자가 기준의 비용 청구 및 조율이 필요할 수 있습니다.</p>
+                    </div>
+                </details>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>

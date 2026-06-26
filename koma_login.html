@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOMA 스타일 - 로그인</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* 헤더 영역 */
+        header {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 30px 40px;
+            background-color: #fff;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            z-index: 10;
+        }
+        .header-left .menu-btn {
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .header-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+        }
+        .header-center .logo-main-link {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            text-decoration: none;
+            color: #333333;
+            display: inline-block;
+            position: relative;
+            z-index: 999;
+            pointer-events: auto;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            z-index: 10;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 2px;
+        }
+        .search-container input {
+            border: none;
+            outline: none;
+            width: 100px;
+            font-size: 14px;
+            padding-left: 5px;
+        }
+        .header-right a {
+            color: #333;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        /* 로그인 메인 레이아웃 */
+        main {
+            width: 100%;
+            max-width: 440px;
+            margin: 0 auto;
+            padding: 80px 20px 120px 20px;
+            text-align: center;
+        }
+
+        .login-title {
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #111111;
+            margin-bottom: 50px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: #222;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        .form-group input {
+            width: 100%;
+            height: 45px;
+            border: 1px solid #aaa;
+            background-color: #fcfcfc;
+            padding: 0 15px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus {
+            border-color: #111;
+        }
+
+        .login-submit-btn {
+            width: 100%;
+            height: 48px;
+            background-color: #111;
+            color: #fff;
+            border: none;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 15px;
+            margin-bottom: 24px;
+            transition: background-color 0.2s;
+        }
+        .login-submit-btn:hover {
+            background-color: #333;
+        }
+
+        .login-sub-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 4px;
+        }
+        .login-sub-links a {
+            font-size: 11px;
+            color: #777;
+            text-decoration: none;
+            letter-spacing: -0.2px;
+        }
+        .login-sub-links a:hover {
+            color: #111;
+            text-decoration: underline;
+        }
+        .link-divider {
+            color: #eee;
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+        <div class="header-center">
+            <a href="KOMA.html" class="logo-main-link">KOMA</a>
+        </div>
+        <div class="header-right">
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
+                <input type="text">
+            </div>
+            <!-- 파일명 반영 수정 -->
+            <a href="koma_login.html"><i class="fa-regular fa-user"></i></a>
+            <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="login-title">로그인</h2>
+
+        <form action="#" method="POST" onsubmit="alert('로그인 시도'); return false;">
+            <div class="form-group">
+                <label for="userId">아이디</label>
+                <input type="text" id="userId" required autocomplete="username">
+            </div>
+
+            <div class="form-group">
+                <label for="userPw">비밀번호</label>
+                <input type="password" id="userPw" required autocomplete="current-password">
+            </div>
+
+            <button type="submit" class="login-submit-btn">LOG IN</button>
+        </form>
+
+        <div class="login-sub-links">
+            <!-- 회원가입 연동 확인 -->
+            <a href="koma_login_1.html">회원가입</a>
+            <div>
+                <a href="#">아이디 찾기</a>
+                <span class="link-divider">|</span>
+                <a href="#">비밀번호 찾기</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
